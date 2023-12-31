@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TL example</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='@assets/tlBootstrap/tlBootstrap/CSS/tlBootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='@assets/tlBootstrap/tlBootstrap/JS/tl-js.min.js') }}"></script>
+    <style>
+        * {
+            font-family: "Poppins";
+        }
+        a,p {
+            font-size: 14px;
+            color: white;
+        }
+
+        :root {
+            --primary: rgb(30, 30, 44);
+            --primary-special: rgb(71, 247, 247);
+            --secondary-special: rgb(255, 0, 76);
+            --tritary-special: rgb(0, 200, 76);
+            --shadowPrimary-special: rgba(50, 223, 223, 0.425);
+            --bg-dark: rgb(7, 7, 17);
+            --main-fontFamily: 'Poppins';
+            --poppins: 'Poppins';
+            --Roboto: 'Roboto';
+            --fw-medium: 600;
+            --fw-bold: bold;
+            --bg-second: rgb(40,40,48);
+            --shadow-acc1: 2px 2px 2px var(--shadowPrimary-special),
+            0px 0px 4px rgba(104, 55, 67, 0.2);
+        }
+        body {
+            background-image: url("{{ url_for('static', filename='img/3dfond.webp') }}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+           
+        }
+        .tl_color-brown-spe {
+            color: var(--primary-special);
+        }
+        .tl_color-brown-spe-hover:hover {
+            color: var(--primary-special);
+        }
+        .tl_bg-brown-spe {
+            color: var(--primary-special);
+        }
+        .tl_bg-brown-spe-hover:hover {
+            background-color: var(--primary-special);
+        }
+        .glober {
+            background-color: var(--bg-dark);
+            /*background-image: url("img/3dfond.webp");*/
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            scroll-behavior: smooth;
+        }
+        .container::-webkit-scrollbar {
+            width: 6px;
+            background-color: rgba(167, 111, 125, 0);
+        }
+        .container::-webkit-scrollbar-thumb:hover {
+            width: 100%;
+            background-color: var(--primary-special);
+            
+        }
+        .container::-webkit-scrollbar-thumb {
+            width: 100%;
+            background-color: var(--shadowPrimary-special);
+            border-radius: 5px;
+        }
+        .testimonial-wrapper p::-webkit-scrollbar {
+            width: 2px;
+            background-color: rgba(167, 111, 125, 0);
+        }
+        .testimonial-wrapper p::-webkit-scrollbar-thumb:hover {
+            width: 100%;
+            background-color: rgba(0,0,0,.3);
+            
+        }
+        .testimonial-wrapper p::-webkit-scrollbar-thumb {
+            width: 100%;
+            background-color: rgba(0,0,0,.1);
+            border-radius: 5px;
+        }
+        .navgate {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .primary {
+            color: var(--primary);
+        }
+        .banner-img {
+            transform: rotateX(5%);
+        }
+        .sp-shadow {
+            box-shadow: 2px 2px 6px rgba(241, 52, 109, 0.3),
+            0px 0px 2px rgba(241, 52, 109, 0.4),
+            inset 2px 2px 6px rgba(241, 52, 109, 0.3),
+            inset 0px 0px 2px rgba(129, 124, 126, 0.4);
+        }
+        
+        .cv-d {
+            margin-top: 40px;
+            width: fit-content;
+            background: transparent;
+            box-shadow: 2px 2px 10px var(--primary-special);
+            transition: all ease .2s;
+            color: var(--primary-special);
+        }
+        .cv-d:hover {
+            background: var(--primary-special);
+            box-shadow: 2px 2px 10px var(--primary-special),
+            0px 0px 10px var(--primary-special);
+            color: var(--bg-dark);
+        }
+
+
+        .pack {
+            background: var(--bg-second);
+            box-shadow: 2px 2px 4px rgb(0,0,0,.8),
+            0 0 2px rgb(0,0,0,.8);
+        }
+        .pack:hover {
+            box-shadow: 2px 2px 10px var(--clr);
+        }
+        .pack h4 {
+            transition: all ease .2s;
+            color: grey;
+        }
+        .pack p {
+            color: white;
+            font-size: 12px;
+        }
+        .pack:hover h4 {
+            color: var(--clr);
+        }
+        
+
+        .competence-pack {
+            background: var(--bg-second);
+            box-shadow: 2px 2px 10px var(--clr),
+            0 0 6px var(--clr);
+            margin-bottom: 60px;
+            border: 2px solid var(--clr);
+        }
+        .competence-pack h4 {
+            transition: all ease .2s;
+            color: var(--clr);
+        }
+        .competence-pack p {
+            flex: 1;
+            color: white;
+            font-size: 12px;
+        }
+
+        .level-box {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+        .level-box::before {
+            content: attr(data-np);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            color: var(--clr);
+            transform: translate(-50%,-50%);
+        }
+        svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+        circle {
+            position: absolute;
+            transform: translate(12px,12px);
+            fill: none;
+            stroke-linecap: round;
+            stroke: var(--clr);
+            stroke-width: 15px;
+            stroke-dasharray: 375;
+            stroke-dashoffset: 375;
+        }
+        .active circle:nth-child(1) {
+            animation: circle 2s forwards;
+            animation-delay: calc(var(--td)*.5s);
+        }
+        @keyframes circle {
+            0% {
+                stroke-dashoffset: 375;
+            }
+            100% {
+                stroke-dashoffset: calc(375 - (375*var(--np))/100);
+            }
+        }
+        circle:nth-child(2) {
+            position: absolute;
+            transform: translate(12px,12px);
+            fill: none;
+            stroke-linecap: round;
+            stroke: var(--shadowPrimary-special);
+            stroke-width: 15px;
+            stroke-dasharray: 375;
+            stroke-dashoffset: 0;
+        }
+        
+
+
+
+        nav li {
+            color: white;
+        }
+        #logo {
+            text-shadow: var(--shadow-acc1);
+        }
+        .ba-img {
+            filter: brightness(100%) saturate(10%);
+        }
+        .banner-img {
+            filter: brightness(100%) saturate(10%);
+        }
+        .sect-grey {
+            background-color: var(--bg-second);
+        }
+        .hidyx {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .hidyx::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(90deg,transparent, var(--bg-dark),var(--bg-dark),var(--bg-dark),var(--bg-dark));
+            width: 200%;
+            height: 100%;
+            z-index: 2;
+            transform: translateX(-50%);
+        }
+        .active .hidyx::before {
+            animation: fromLeftful 4s linear 1 forwards;
+        }
+        .showHide {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .showHide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(120deg,transparent ,var(--bg-second),var(--bg-second),var(--bg-second));
+            width: 200%;
+            height: 100%;
+            z-index: 2;
+            transform: translateX(-50%);
+            transition: all ease 3s;
+        }
+        .active .showHide::before {
+            transform: translateX(100%);
+        }
+        .appHide {
+            position: relative;
+            width: 100%;
+        }
+        .appHide::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: 0;
+            background: linear-gradient(120deg,transparent ,var(--bg-dark),var(--bg-dark),var(--bg-dark));
+            width: 210%;
+            height: 135%;
+            z-index: 2;
+            transform: translateX(-50%);
+            transition: all ease 3s;
+        }
+        .active .appHide::before {
+            transform: translateX(100%);
+        }
+
+        .img-box1 {
+            position: relative;
+            width: 110%;
+            overflow: hidden;
+        }
+        .img-box1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(240deg,transparent ,transparent,var(--bg-dark));
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        [bannercontentwritable="true"] {
+            position: relative;
+            padding-right: 8px;
+        }
+        .focusWrite{
+            padding: 2px;
+            height: 14px;
+            background-color: var(--primary-special);
+            box-shadow: 2px 2px 10px var(--primary-special),
+            0px 0px 10px var(--primary-special);
+            animation: flashFocus 1.4s infinite linear;
+        }
+
+        /*Animation de mise en place*/
+        .anim-nav-item {
+            animation: fromBottom .5s linear 1 forwards;
+            animation-delay: calc(var(--td)*.125s);
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        .anim-nav-item:hover {
+            text-shadow: 1px 1px 6px var(--primary-special),
+            -1px -1px 6px var(--primary-special),
+        }
+        section * {
+            transition: all ease .2s;
+        }
+        .cv-d {
+            transform: scale(.1);
+            opacity: 0;
+        }
+        
+        .active .cv-d {
+            animation: scalli .5s 1 linear forwards;
+        }
+        .scalya {
+            transition: all ease 1s .5s;
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        .active .scalya {
+            transform: translateY(0%);
+            opacity: 1;
+        }
+        .fromT {
+            transition: all ease .6s;
+            transform: translateY(-100%);
+                opacity: 0;
+        } 
+        .active .fromT {
+            transform: translateY(0);
+            opacity: 1;
+        } 
+        .fromL {
+            transition: all ease .6s;
+            transform: translateX(-100%) rotate(100deg,90deg);
+            opacity: 0;
+        } 
+        .active .fromL {
+            transform: translateX(0) rotate(0deg);
+            opacity: 1;
+        } 
+        .fromR {
+            transition: all ease .6s;
+            transform: translateX(100%);
+                opacity: 0;
+        } 
+        .active .fromR {
+            transform: translateX(0);
+            opacity: 1;
+        } 
+        .anim1 {
+            transition: all ease 1.3s;
+            transform: translateX(-100%);
+                opacity: 0;
+        } 
+        .active .anim1 {
+            transform: translateX(0);
+            opacity: 1;
+        } 
+        @keyframes flashFocus {
+            0%,20%,40%,60%,80%,100% {
+                opacity: 0;
+            }
+            10%,30%,50%,70%,90% {
+                opacity: 1;
+            }
+        }
+        @keyframes scalli {
+            0% {
+                transform: scale(.1);
+                opacity: 0;
+            }
+            50%{
+                opacity: .2;
+            }
+            95% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        @keyframes fromRight {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            50%{
+                opacity: .2;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        @keyframes fromLeftful {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        @keyframes fromLeft {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            50%{
+                opacity: .2;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        @keyframes fromBottom {
+            0% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+
+        /* box media 3d */
+        .ul-3d {
+            position: relative;
+            width: 30%;
+            transition: all .3s;
+            transform: skewY(-25deg) translate(20%,70%);
+            height: 100px;
+        }
+        .ul-3d li {
+            position: absolute;
+            top: -200px;
+            opacity: 0;
+            transform: translate(calc(var(--ix) * 40px),calc(var(--iy) * 40px));
+            width: 120px;
+            padding: 15px;
+            list-style-type: none;
+            transition: all ease .8s;
+            transition-delay: calc(var(--ix)*.1s);
+            background-color: rgb(37, 37, 37);
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .active .ul-3d li {
+            transition: all ease .5s;
+            transition-delay: calc(var(--ix)*.1s);
+            top: 0;
+            opacity: 1;
+        }
+        .active .ul-3d li:hover {
+            transition-delay: 0s;
+            top: -50px;
+            background-color: var(--clr);
+        }
+
+        .ul-3d li::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -40px;
+            height: 100%;
+            width: 40px;
+            transition: .5s;
+            background-color: rgb(31, 31, 31);
+            transform-origin: right;
+            transform: skewY(45deg);
+        }
+
+        .ul-3d li:hover::before {
+            background-color: var(--clr);
+            filter: brightness(1);
+        }
+
+        .ul-3d li::after {
+            content: attr(data-text);
+            color: rgb(82, 82, 82);
+            position: absolute;
+            top: -39px;
+            left: 0;
+            transform-origin: bottom;
+            height: 40px;
+            width: 100%;
+            transition: 0.5s;
+            background-color: rgb(46, 46, 46);
+            transform: skewX(45deg);
+            box-shadow: -120px 120px 20px rgba(0,0,0,.25);
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+            padding-left: 20px;
+            box-sizing: border-box;
+            color: var(--clr);
+        }
+
+        .ul-3d li:hover::after {
+            background-color: var(--clr);
+            color: white;
+            box-shadow: -140px 140px 20px var(--clr);
+        }
+
+        .ul-3d li a {
+            text-decoration: none;
+            color: transparent;
+            letter-spacing: 1px;
+            transition: .5s;
+
+        }
+        .ul-3d li{
+            color: white;  
+        }
+        .ul-3d li a>span {
+            position: absolute;
+            top: 0;
+            left: -40px;
+            width: 40px;
+            height: 100%;
+            text-align: center;
+            color: var(--clr);
+            transform-origin: right;
+            transform: skewY(45deg);
+            transition: .5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+        .ul-3d li:hover a>span {
+            color: white;
+        }
+        .specialText {
+            color: var(--primary-special);
+        }
+        .apropos {
+            border: 2px solid var(--primary-special);
+            box-shadow: 2px 2px 10px var(--primary-special),-1px -1px 10px var(--primary-special);
+            position: relative;
+        }
+        .apropos h3 {
+            font-size: 15px;
+        }
+        .apropos p {
+            font-size: 13px;
+        }
+        .apropos .avar {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            border: 5px solid var(--primary-special);
+            box-shadow: 1px 1px 10px rgba(71, 247, 247, 0.89),
+            -1px -1px 10px rgba(71, 247, 247, 0.89);
+            transform: translate(-50%,-50%);
+        }
+        .img-box {
+            width: 320px;
+            height: 450px;
+        }
+        .animPack .level-box {
+            transition: all ease .5s;
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        .active .animPack .level-box{
+            transition-delay: .2s;
+            transform: translateX(0%);
+            opacity: 1;
+        }
+        .animPack {
+            transition: all ease 1.2s calc(var(--ttd)*.3s);
+            transform: translateX(-60%) rotateY(75deg);
+            opacity: 0;
+        }
+        .active .animPack {
+            transform: translateX(0%) rotateY(0deg);
+            opacity: 1;
+        }
+        .animBtn {
+            transition: all ease 1s;
+            transform: translateX(-80%) rotateY(75deg);
+            opacity: 0;
+        }
+        
+        .active .animBtn {
+            transition-delay: calc(var(--ttd)*.2s);
+            transform: translateX(0%) rotateY(0deg);
+            opacity: 1;
+        }
+        .active .animBtn:hover {
+            transition: all ease .3s 0s;
+        }
+        .decomposeFromBottom {
+            transition: all ease 1s calc(var(--tds)*.1s);
+            transform: translateY(150%);
+            opacity: 0;
+        }
+        .active .decomposeFromBottom {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .linear-bg {
+            background: linear-gradient(80deg, rgb(58, 58, 230),rgb(235, 47, 47));
+            height: fit-content !important;
+            box-shadow: 2px 2px 4px rgb(0,0,0,.4);
+            transform-style: preserve-3d;
+        }
+        
+        
+        .form-wrapper {
+            border-radius: 12px;
+            background: rgba(255,255,255,1);
+            backdrop-filter: blur(4px);
+            box-shadow: 1px 1px 6px rgba(0,0,0,.4);
+            transform-origin: center;
+            perspective: 4000px;
+            transform: skewX(45deg) rotateY(50deg) scale(.7);
+            transition: all ease calc(1s/2);
+        }
+        .active .form-wrapper {
+            transition-delay: calc(4.2s/2);
+            transform: skew(0) rotate(0) scale(1);
+        }
+        .form-wrapper .tl_row {
+            transform: translateZ(20px) translateX(20%) translateY(-8%);
+            transition: all ease calc(1.4s/2) calc(var(--td)*1.2);
+        }
+        .active .form-wrapper .tl_row {
+            transform: translateZ(0) translateX(0%) translateY(0);
+        }
+        .former h3 {
+            color: var(--bg-dark);
+            margin-bottom: 30px;
+        }
+        .former .sendAvi {
+            background-color: var(--bg-dark);
+            color: white;
+        }
+        .inputer {
+            width: 100%;
+            background-color: rgba(0,0,0,.2);
+            color: var(--bg-dark);
+            backdrop-filter: blur(6px);
+            border-radius: 10px;
+            position: relative;
+            height: 55px;
+            padding: 8px 15px;
+            border: none;
+            outline: none;
+        }
+        .tl_shw-1 {
+            box-shadow: 2px 2px 2px rgb(0,0,0,.4),
+            -2px -2px 1px -1px rgba(122, 122, 122, 0.4);
+        }
+        .inputer-area {
+            width: 100%;
+            background-color: rgba(0,0,0,.2);
+            color: var(--bg-dark);
+            backdrop-filter: blur(6px);
+            border-radius: 10px;
+            position: relative;
+            height: 90px;
+            resize: none;
+            padding: 8px 15px;
+            border: none;
+            outline: none;
+        }
+
+        /* TESTIMONIAL CSS*/
+        .testimonial-wrapper {
+            display: grid;
+            width: 100%;
+            grid-template-columns: repeat(4,23%);
+            align-items: center;
+            justify-content: space-between;
+            row-gap: 40px;
+        }
+        .testimonial-wrapper .test-col {
+            transition: all ease 1s calc(var(--td)*.1s);
+            transform: rotateX(90deg) rotateY(90deg);
+        }
+        .active .testimonial-wrapper .test-col {
+            transform: rotateX(360deg) rotateY(360deg);
+        }
+        .showOnmobile {
+            display: none;
+        }
+        @media (max-width: 1200px) {
+            .img-box {
+                width: 300px;
+                height: 420px;
+            }
+            .me {
+                font-size: 19px;
+            }
+            .hidyx {
+                font-size: 13px;
+            }
+        }
+        @media (max-width: 1120px) {
+            .glober {
+                width: 90%;
+            }
+            .ba-img {
+                width: 250px;
+                height: 360px;
+            }
+            .img-box {
+                width: 270px;
+                height: 370px;
+            }
+            nav {
+                padding-left: 30px;
+                padding-right: 30px;
+            }
+            
+        }
+        @media (max-width: 1100px) {
+            .testimonial-wrapper {
+                grid-template-columns: repeat(3,32%);
+            }
+        }
+        @media (max-width: 940px) {
+            .img-box {
+                width: 280px;
+                height: 380px;
+            }
+            .former {
+                width: 70%;
+            }
+            nav {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+        
+        @media (max-width: 850px) {
+            .testimonial-wrapper {
+                grid-template-columns: repeat(2,48%);
+            }
+            .hideOnmobile {
+                display: none;
+            }
+            .showOnmobile {
+                display: flex;
+            }
+            #ba p {
+                width: 100%;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            #ba p{
+                text-align: left;
+            }
+            #ba h1 {
+                padding-left: 15px;
+                padding-right: 15px;
+                width: 100%;
+                text-align: left !important;
+            }
+            body {
+                justify-content: start;
+                padding: 0;
+                min-height: 93vh;
+                max-height: 93vh;
+                height: 93vh;
+            }
+            .glober {
+                padding-top: 1vh;
+                min-width: 100%;
+                min-height: 100%;
+                max-width: 100%;
+                max-height: 100%;
+                height: 100%;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            nav {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            .menuWrap {
+                background-color: var(--bg-dark);
+                border-radius: 10px;
+                padding: 5px;
+            }
+            .menuWrap li{
+                margin-top: 8px;
+                margin-bottom: 14px;
+            }
+        }
+        @media (max-width: 800px) {
+            .former {
+                width: 85%;
+            }
+            .former .tl_row {
+                gap: 20px;
+            }
+            .former .tl_row .tl_col-1 {
+                width: 100%;
+            }
+            .glober {
+                width: 92%;
+            }
+            .md-align-center {
+                align-items: center;
+            }
+            .me {
+                font-size: 18px;
+            }
+            .hidyx {
+                font-size: 12px;
+            }
+            .soc-boxer {
+                min-height: 60vh;
+            }
+            .md-row-reverse {
+                flex-direction: column-reverse !important;
+            }
+            .ul-3d {
+                transform: skewY(-25deg) translate(0%,70%);
+            }
+            
+        }
+        @media (max-width: 750px) {
+            .glober {
+                width: 95%;
+            }
+            .img-box {
+                width: 275px;
+                height: 350px;
+                margin-bottom: 30px;
+            }
+            .md-align-center {
+                align-items: center;
+            }
+            #logo {
+                font-size: 14px;
+            }
+            .apropos {
+                min-width: 85%;
+                width: 85%;
+                padding-left: 10px;
+                padding-right: 10px;
+                padding-bottom: 25px;
+            }
+            .apropos .avar {
+                min-width: 160px;
+                min-height: 160px;
+                max-width: 160px;
+                max-height: 160px;
+            }
+            .apropos p ,p, section {
+                font-size: 13px;
+            }
+            .apropos .tl_mt-130 {
+                margin-top: 110px;
+            }
+        }
+        @media (max-width: 700px) {
+            .ul-3d {
+                transform: skewY(-25deg) translate(0%,100%);
+            }
+        }
+        @media (max-width: 670px) {
+            .ul-3d {
+                transform: skewY(-25deg) translate(-10%,100%);
+            }
+        }
+        
+        @media (max-width: 620px) {
+            .competence-row {
+                flex-direction: column-reverse;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 550px) {
+            
+            .glober {
+                width: 98%;
+            }
+            .former .tl_row {
+                gap: 0;
+            }
+            .me {
+                font-size: 16px;
+            }
+            .hidyx {
+                font-size: 12px;
+            }
+            .apropos .avar {
+                min-width: 150px;
+                min-height: 150px;
+                max-width: 150px;
+                max-height: 150px;
+            }
+            .apropos p ,p, section {
+                font-size: 12px;
+            }
+            .apropos .tl_mt-130 {
+                margin-top: 100px;
+            }
+            .apropos {
+                min-width: 98%;
+                width: 98%;
+                padding-left: 8px;
+                padding-right: 8px;
+                padding-bottom: 20px;
+            }
+            .apropos .tl_w-85{
+                width: 90%;
+            }
+            .ul-3d {
+                transform: skewY(-25deg) translate(-20%,100%);
+            }
+            .testimonial-wrapper {
+                grid-template-columns: repeat(1,80%);
+                justify-content: center;
+            }
+            .testimonial-wrapper h3 {
+                font-size: 18px;
+            }
+        }
+        @media (max-width: 500px) {
+            .ul-3d {
+                transform: skewY(-25deg) translate(-30%,100%);
+            }
+            .former {
+                width: 90%;
+            }
+            .testimonial-wrapper {
+                grid-template-columns: repeat(1,90%);
+            }
+            .testimonial-wrapper h3 {
+                font-size: 17px;
+            }
+            .testimonial-wrapper p {
+                margin-bottom: 10px;
+            }
+        }
+        @media (max-width: 470px) {
+            .ul-3d {
+                transform: skewY(-25deg) translate(-50%,100%);
+            }
+        }
+        @media (max-width: 400px) {
+            .former {
+                width: 95%;
+            }
+            .testimonial-wrapper {
+                grid-template-columns: repeat(1,96%);
+            }
+            .testimonial-wrapper h3 {
+                font-size: 16px;
+            }
+        }
+        @media (max-width: 380px) {
+            .glober {
+                width: 99%;
+            }
+            .ul-3d {
+                transform: skewY(-25deg) translate(-55%,100%);
+            }
+        }
+        @media (max-width: 310px) {
+            .testimonial-wrapper {
+                grid-template-columns: repeat(1,98%);
+            }
+            .testimonial-wrapper h3 {
+                font-size: 15px;
+            }
+        }
+
+    </style>
+</head>
+<body class="tl_w-100 tl_h-100vh tl_display-flex tl_justify-content-center tl_align-items-center tl_position-relative">
+    <!-- <ul>
+        {% for user in users %}
+            <li>{{ user.username }} - {{ user.email }}</li>
+        {% endfor %}
+    </ul> -->
+    
+    <div class="tl_w-85 tl_border-radius-8 tl_max-h-96 tl_h-94 tl_overflow-hidden tl_shadow-1 glober tl_position-relative">
+        <header class="tl_w-100 tl_pv-10">
+            <nav class="tl_w-100 tl_display-flex tl_align-items-center tl_justify-content-spaceBetween tl_ph-30">
+                <div id="logo" class="tl_color-white">
+                    <span class="tl_color-brown-spe">DMML</span>-Portofolio
+                </div>
+                <div class="navgate primary hideOnmobile">
+                    <li style="--td: 1" class="anim-nav-item tl_liste-style-none"><a href="#ba" class="tl_text-decoration-none transition-all-ease-3 tl_color-white tl_color-brown-spe-hover tl_ph-25 tl_pv-10">Acceuil</a></li>
+                    <li style="--td: 2" class="anim-nav-item tl_liste-style-none"><a href="#app" class="tl_text-decoration-none transition-all-ease-3 tl_color-white tl_color-brown-spe-hover tl_ph-25 tl_pv-10">Blog</a></li>
+                    <li style="--td: 3" class="anim-nav-item tl_liste-style-none"><a href="#cpt" class="tl_text-decoration-none transition-all-ease-3 tl_color-white tl_color-brown-spe-hover tl_ph-25 tl_pv-10">Compétences</a></li>
+                    <li style="--td: 4" class="anim-nav-item tl_liste-style-none"><a href="#oe" class="tl_text-decoration-none transition-all-ease-3 tl_color-white tl_color-brown-spe-hover tl_ph-25 tl_pv-10">Oeuvre</a></li>
+                    <li style="--td: 5" class="anim-nav-item tl_liste-style-none"><a href="#tst" class="tl_text-decoration-none transition-all-ease-3 tl_color-white tl_color-brown-spe-hover tl_ph-25 tl_pv-10">Témoignages</a></li>
+                    <li style="--td: 6" class="anim-nav-item tl_liste-style-none"><a href="#ct" class="tl_text-decoration-none transition-all-ease-3 tl_color-white tl_color-brown-spe-hover tl_ph-25 tl_pv-10">Contact</a></li>
+                </div>
+                <button class="showOnmobile bx bx-menu-alt-right tl_cursor-pointer tl_fs-24 tl_border-none tl_outline-none tl_color-white tl_bg-transparent">
+                </button>
+                <div class="primary tl_display-none tl_flex-column menuWrap tl_align-self-end tl_position-fixed tl_top-5 tl_right-0 tl_z-infinite">
+                    <li style="--td: 1" class="anim-nav-item tl_liste-style-none"><a href="#ba" class="tl_text-decoration-none transition-all-ease-3 tl_color-white tl_color-brown-spe-hover tl_ph-25 tl_pv-10">Acceuil</a></li>
+                    <li style="--td: 2" class="anim-nav-item tl_liste-style-none"><a href="#app" class="tl_text-decoration-none transition-all-ease-3 tl_color-white tl_color-brown-spe-hover tl_ph-25 tl_pv-10">Blog</a></li>
+                    <li style="--td: 3" class="anim-nav-item tl_liste-style-none"><a href="#cpt" class="tl_text-decoration-none transition-all-ease-3 tl_color-white tl_color-brown-spe-hover tl_ph-25 tl_pv-10">Compétences</a></li>
+                    <li style="--td: 4" class="anim-nav-item tl_liste-style-none"><a href="#oe" class="tl_text-decoration-none transition-all-ease-3 tl_color-white tl_color-brown-spe-hover tl_ph-25 tl_pv-10">Oeuvre</a></li>
+                    <li style="--td: 5" class="anim-nav-item tl_liste-style-none"><a href="#tst" class="tl_text-decoration-none transition-all-ease-3 tl_color-white tl_color-brown-spe-hover tl_ph-25 tl_pv-10">Témoignages</a></li>
+                    <li style="--td: 6" class="anim-nav-item tl_liste-style-none"><a href="#ct" class="tl_text-decoration-none transition-all-ease-3 tl_color-white tl_color-brown-spe-hover tl_ph-25 tl_pv-10">Contact</a></li>
+                </div>
+            </nav>
+        </header>
+        <main class="container tl_max-h-90 tl_h-100 tl_overflow-hidden tl_overflow-y-scroll">
+            <section id="ba" class="tl_row tl_align-items-center banner tl_mt-40">
+                <div class="imgContainer anim1 tl_col-1 tl_align-items-center tl_pt-20 tl_ph-10">
+                    <div class="img-box img-box1">
+                        <img src="{{ url_for('static', filename='img/D1.png') }}" class="tl_blind-full banner-img ba-img">
+                    </div>
+                </div>
+                <div class="court-apropos tl_col-1 md-align-center">
+                    <h1 class="me fromR tl_color-white tl_mv-20 tl_ph-10">
+                        Moi c'est <span class="tl_color-brown-spe" namewrited="true"></span>
+                    </h1>
+                    <p class="tl_mb-10 hidyx tl_w-100 tl_text-center p2"><span class="tl_color-brown-spe">Je suis une </span>passionnée de l'art visuel et de la création artistique.</p>
+                    <p bannercontentwritable="true" class=" tl_w-fit-content tl_text-right tl_w-100"></p>
+                    <button class="tl_display-flex cv-d tl_cursor-pointer tl_align-items-center tl_justify-content-center tl_outline-none tl_border-none tl_border-radius-10 tl_pv-10 tl_ph-20 tl_align-items-center">
+                        <i class="bx bxs-download"></i> télécharger mon cv
+                    </button>
+                </div>
+            </section>
+            <section class="tl_row md-row-reverse sect-grey tl_align-items-center tl_pt-40 tl_mt-40 tl_ph-10 tl_justify-content-spaceAround">
+                <div class="court-apropos tl_col-1 tl_align-items-center">
+                    <h1 class="me scalya tl_color-white tl_mt-30 tl_mb-20 tl_text-center">
+                        Ma pensée du <span class="tl_color-brown-spe">Design</span>
+                    </h1>
+                    <p class="tl_mb-10 tl_text-center tl_color-brown-spe toDecomp">Conception graphique en création de carte de visite, affiche, carte d'invitation et logos</p>
+                    <p class="tl_text-center fromR showHide">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque magni velit animi iste ex magnam tenetur! Quo molestiae pariatur soluta error nemo cum at, cupiditate eum. Consequatur provident sequi labore?
+                    </p>
+                </div>
+                <div class="imgContainer tl_col-1 tl_align-items-end md-align-center tl_pt-20">
+                    <div class="img-box fromR">
+                        <img src="{{ url_for('static', filename='img/D4.png') }}" class="tl_blind-full ba-img">
+                    </div>
+                </div>
+            </section>
+            <section class="tl_row sect-grey tl_align-items-center soc-boxer tl_min-h-60vh tl_mt-0 tl_ph-10 tl_justify-content-center">
+                <ul class="block ul-3d tl_w-100">
+                    <li style="--iy:-3; --ix:0; --clr: rgb(19, 19, 192);" class="opt" data-text="Facebook"><a href=""><span><i class="bx bxl-facebook"></i></span>Facebook</a></li>
+                    <li style="--iy:-2; --ix:1; --clr: rgb(27, 87, 253);" class="opt" data-text="Twitter"><a href=""><span><i class="bx bxl-twitter"></i></span>Twitter</a></li>
+                    <li style="--iy:-1; --ix:2; --clr: rgb(204, 8, 50);" class="opt" data-text="Instagram"><a href=""><span><i class="bx bxl-instagram"></i></span>Instagram</a></li>
+                    <li style="--iy: 0; --ix:3; --clr: rgb(20, 107, 20);" class="opt" data-text="Whatsapp"><a href=""><span><i class="bx bxl-whatsapp"></i></span>Whatsapp</a></li>
+                    <li style="--iy: 1; --ix:4; --clr: red;" class="opt" data-text="Youtube"><a href=""><span><i class="bx bxl-youtube"></i></span>Youtube</a></li>
+                </ul>
+            </section>
+            <section id="app" class="tl_col tl_align-items-center tl_color-white tl_ph-10 tl_pt-80">
+                <div class="tl_max-w-80 tl_mt-40 tl_display-flex appHide tl_flex-column apropos tl_border-radius-10 tl_align-items-center tl_justify-content-center border-special shadow-special border-radius-10 tl_ph-20 tl_pb-50">
+                    <div class="avar circular tl_w-200px tl_h-200px">
+                        <img src="{{ url_for('static', filename='img/avatar.png') }}" alt="" class="tl_blind-full circular scalya">
+                    </div>
+                    <h3 style="transition-delay: .4s;" class="tl_color-white tl_mt-130 fromR"><span class="specialText">Dossou-Yovo</span> Lérancia</h3>
+                    <p style="transition-delay: .8s;" class="tl_mt-20 tl_w-85 specialText tl_fs-14 tl_text-center fromT">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. amet consectetur adipisicing elit. Ea, impedit! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis vel consectetur soluta autem, enim, culpa tenetur hic voluptatibus fugit eaque ullam dolorem sed architecto! Sunt impedit sed natus, aliquam suscipit molestiae nob quia.
+                    </p>
+                    <p style="transition-delay: 1.2s;" class="tl_mt-20 tl_w-85 tl_fs-14 tl_text-center tl_mb-20 fromL">
+                        Enim, culpa tenetur hic voluptatibus fugit eaque ullam dolorem sed architecto! Sunt impedit sed natus, aliquam suscipit molestiae nobis rerum libero quas ratione distinctio minima porro repellendus tempore. Pariatur nam esse odio magni illo, error accusantium quia.
+                    </p>
+                </div>
+            </section>
+            <section id="cpt" class="tl_col sect-grey tl_align-items-center tl_mb-20 tl_mt-70 tl_pt-40 tl_ph-10">
+                <h3 class="tl_color-white tl_mb-60 fromR"><span class="tl_color-brown-spe">Mes </span>Compétences</h3>
+                <div class="tl_col tl_align-items-start tl_justify-content-spaceAround tl_ph-20">
+                    <div style="--clr: var(--primary-special); --ttd: 1" class="animPack competence-row tl_w-100 tl_mb-30 tl_display-flex tl_overflow-hidden tl_border-radius-10 tl_pv-10 tl_align-items-center competence-pack">
+                        <div style="flex: 1;" class="tl_display-flex tl_flex-column tl_align-items-center">
+                            <h4 style="transition-delay: 1s;" class="specialText tl_mb-10 scalya">Photoshop</h4>
+                            <p class="tl_ph-5 tl_text-center tl_w-100 toDecomp">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum distinctio sit voluptate dignissimos vitae quae animi, natus modi neque quisquam ducimus sequi suscipit non cum accusamus. Esse eveniet illum repellendus aliquam laboriosam ipsam maiores minus consequatur quisquam praesentium nemo, nobis odit architecto, ad ipsum fugit!</p>
+                        </div>
+                        <div style="--clr: var(--primary-special)" class="level-box" data-np="90 %">
+                            <svg>
+                                <circle style="--clr: var(--primary-special); --np: 90; --td: 2" class="pg-fill" cx="60" cy="60" r="60"></circle>
+                                <circle cx="60" cy="60" r="60"></circle>
+                            </svg>
+                            <!-- <h3 data-np="60">60<span>%</span></h3> -->
+                        </div>
+                    </div>
+                    <!--Rogue Outbreak: Zombie War  -->
+                    <div style="--clr: var(--tritary-special); --ttd: 2" class="animPack competence-row tl_w-100 tl_mb-30 tl_display-flex tl_overflow-hidden tl_border-radius-10 tl_pv-10 tl_align-items-center competence-pack">
+                        <div style="flex: 1;" class="tl_display-flex tl_flex-column tl_align-items-center">
+                            <h4 style="transition-delay: 2s;" class="specialText tl_mb-10 fromR">PowerPoint</h4>
+                            <p class="tl_ph-5 tl_text-center tl_w-100 toDecomp">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum distinctio sit voluptate dignissimos vitae quae animi, natus modi neque quisquam ducimus sequi suscipit non cum accusamus. Esse eveniet illum repellendus aliquam laboriosam ipsam maiores minus consequatur quisquam praesentium nemo, nobis odit architecto, ad ipsum fugit!</p>
+                        </div>
+                        <div style="--clr: var(--tritary-special)" class="level-box" data-np="60 %">
+                            <svg>
+                                <circle style="--clr: var(--tritary-special); --np: 60; --td: 2" class="pg-fill" cx="60" cy="60" r="60"></circle>
+                                <circle cx="60" cy="60" r="60"></circle>
+                            </svg>
+                            <!-- <h3 data-np="60">60<span>%</span></h3> -->
+                        </div>
+                    </div>
+
+                    <div style="--clr: white; --ttd: 3" class="animPack competence-row tl_w-100 tl_mb-30 tl_display-flex tl_overflow-hidden tl_border-radius-10 tl_pv-10 tl_align-items-center competence-pack">
+                        <div style="flex: 1;" class="tl_display-flex tl_flex-column tl_align-items-center">
+                            <h4 style="transition-delay: 3s;" class="specialText tl_mb-10 fromL">Illustrator</h4>
+                            <p class="tl_ph-5 tl_text-center tl_w-100 toDecomp">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum distinctio sit voluptate dignissimos vitae quae animi, natus modi neque quisquam ducimus sequi suscipit non cum accusamus. Esse eveniet illum repellendus aliquam laboriosam ipsam maiores minus consequatur quisquam praesentium nemo, nobis odit architecto, ad ipsum fugit!</p>
+                        </div>
+                        <div style="--clr: white" class="level-box" data-np="30 %">
+                            <svg>
+                                <circle style="--clr: white; --np: 30; --td: 3" class="pg-fill" cx="60" cy="60" r="60"></circle>
+                                <circle cx="60" cy="60" r="60"></circle>
+                            </svg>
+                            <!-- <h3 data-np="60">60<span>%</span></h3> -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="oe" class="tl_col oeuvre tl_align-items-center tl_pb-50 tl_mb-20 tl_mt-40 tl_ph-10">
+                <h3 class="tl_color-white tl_mb-60 scalya"><span class="tl_color-brown-spe">Mes </span> Oeuvres</h3>
+                <div class="tl_row tl_align-items-center tl_justify-content-spaceAround tl_ph-20 tl_pt-40">
+                    <div style="--clr: var(--primary-special);--ttd: 0" class="tl_col-3 animBtn tl_overflow-hidden tl_border-radius-10 tl_pv-40 tl_align-items-center pack">
+                        <h4 class="tl_text-center bx bx-paint"><span>Logos</span></h4>
+                        <p style="--nline: 5;" class="tl_ph-5 tl_overflow-y-hidden tl_display-none tl_text-center tl_max-h-30vh tl_min-h-30vh tl_w-100 ellipis-var">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum distinctio sit voluptate dignissimos vitae quae animi, natus modi neque quisquam ducimus sequi suscipit non cum accusamus. Esse eveniet illum repellendus aliquam laboriosam ipsam maiores minus consequatur quisquam praesentium nemo, nobis odit architecto, ad ipsum fugit!</p>
+                    </div>
+                    <div style="--clr: white;--ttd: 1" class="tl_col-3 animBtn tl_overflow-hidden tl_border-radius-10 tl_pv-40 tl_align-items-center pack">
+                        <h4 class="tl_text-center bx bx-user"><span>carte de visite</span></h4>
+                        <p style="--nline: 5;" class="tl_ph-5 tl_overflow-y-hidden tl_display-none tl_text-center tl_max-h-30vh tl_min-h-30vh tl_w-100 ellipis-var">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum distinctio sit voluptate dignissimos vitae quae animi, natus modi neque quisquam ducimus sequi suscipit non cum accusamus. Esse eveniet illum repellendus aliquam laboriosam ipsam maiores minus consequatur quisquam praesentium nemo, nobis odit architecto, ad ipsum fugit!</p>
+                    </div>
+                    <div style="--clr: var(--secondary-special);--ttd: 2" class="tl_col-3 animBtn tl_overflow-hidden tl_border-radius-10 tl_pv-40 tl_align-items-center pack">
+                        <h4 class="tl_text-center bx bxs-paint"><span>affiche</span></h4>
+                        <p style="--nline: 5;" class="tl_display-none tl_ph-5 tl_text-center tl_max-h-30vh tl_min-h-30vh tl_w-100 ellipis-var">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum distinctio sit voluptate dignissimos vitae quae animi, natus modi neque quisquam ducimus sequi suscipit non cum accusamus. Esse eveniet illum repellendus aliquam laboriosam ipsam maiores minus consequatur quisquam praesentium nemo, nobis odit architecto, ad ipsum fugit!</p>
+                    </div>
+                    <div style="--clr: var(--tritary-special);--ttd: 3" class="tl_col-3 animBtn tl_overflow-hidden tl_border-radius-10 tl_pv-40 tl_align-items-center pack">
+                        <h4 class="tl_text-center bx bx-id-card"><span>carte d'invitation</span></h4>
+                        <p style="--nline: 5;" class="tl_display-none tl_ph-5 tl_text-center tl_max-h-30vh tl_min-h-30vh tl_w-100 ellipis-var">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum distinctio sit voluptate dignissimos vitae quae animi, natus modi neque quisquam ducimus sequi suscipit non cum accusamus. Esse eveniet illum repellendus aliquam laboriosam ipsam maiores minus consequatur quisquam praesentium nemo, nobis odit architecto, ad ipsum fugit!</p>
+                    </div>
+                </div>
+            </section>
+            <div class="tl_w-100 linear-bg tl_pb-50 tl_mb-20 tl_pt-15 tl_mt-40 tl_ph-10">
+                <section id="tst" class="tl_col tl_align-items-center tl_gap-20 tl_pt-20">
+                    <h3 class="tl_color-white tl_mb-60 toDecomp">Quelques Témoignages</h3>
+                    {% if posts %}
+                        <div class="testimonial-wrapper tl_ph-10">
+                            {% for post in posts %}
+                                <div style="--td: {{ loop.index0 }};" class="test-col tl_border-radius-25 tl_overflow-hidden tl_display-flex tl_p-10 tl_bg-white tl_flex-column tl_align-items-start">
+                                    <div class="tl_row tl_align-items-center tl_pt-20 tl_mb-25 tl_justify-content-center">
+                                        <div class="img-box-test tl_h-150px avar circular tl_w-150px">
+                                            <img src="{{ post.pp }}" class="tl_blind-full circular" alt="">
+                                        </div>
+                                    </div>
+                                    <h3 class="tl_text-center tl_w-100 tl_mb-5 ellipis">{{ post.username }} {{ post.userprename }}</h3>
+                                    <p class="tl_p-8 tl_color-grey tl_min-h-20vh tl_max-h-20vh tl_overflow-y-scroll tl_fs-12 tl_text-center tl_mb-20">
+                                        {{ post.ucontent }}
+                                    </p>
+                                    <button class="transition-all-ease-3 tl_border-none tl_outline-none tl_cursor-pointer tl_color-white tl_bg-dark tl_bg-black-hover tl_pv-12 tl_w-100 tl_border-radius-20">
+                                        en savoir plus
+                                    </button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p>Aucun post disponible pour le moment.</p>
+                    {% endif %}
+                        
+                    
+                </section>
+                <section id="ct" class="tl_col tl_align-items-center tl_mt-60">
+                    <form class="former tl_w-60 tl_align-items-center tl_pt-30" method="POST" action="{{ url_for('process_form') }}">
+                        <div class="tl_col tl_align-items-center tl_gap-12 tl_pt-30 form-wrapper tl_ph-10 tl_pb-12">
+                            <h3>Laissez votre avis</h3>
+                            <div style="--td: 0s;" class="tl_row tl_mb-10 tl_ph-8 tl_align-items-center tl_justify-content-spaceBetween">
+                                <div class="tl_col-1 tl_align-items-center">
+                                    <input type="text" id="uname" name="uname" placeholder="Votre nom" class="inputer tl_shw-1">
+                                </div>
+                                <div class="tl_col-1 tl_align-items-center">
+                                    <input type="text" id="uprename" name="uprename" placeholder="Votre prénom" class="inputer tl_shw-1">
+                                </div>
+                            </div>
+                            <div style="--td: .4s;" class="tl_row tl_mb-10 tl_ph-8 tl_align-items-center">
+                                <div class="tl_col">
+                                    <input type="email" placeholder="Votre email" id="umail" name="umail" class="inputer tl_shw-1">
+                                </div>
+                            </div>
+                            <div style="--td: .8s;" class="tl_row tl_mb-10 tl_ph-8 tl_align-items-center">
+                                <div class="tl_col">
+                                    <textarea name="ucontent" class="inputer-area tl_shw-1" id="ucontent" cols="30" rows="10"></textarea>
+                                </div>
+                            </div>
+                            <div style="--td: 1s;" class="tl_row tl_mb-10 tl_ph-8 tl_align-items-center">
+                                <div class="tl_col">
+                                    <input type="file" id="pp" name="pp" placeholder="ajouter une image de profile">
+                                </div>
+                            </div>
+                            <div style="--td: 1.4s;" class="tl_row tl_mb-15 tl_ph-8 tl_align-items-center">
+                                <button type="button" class="tl_w-100 tl_pv-14 tl_cursor-pointer tl_shw-1 sendAvi tl_border-radius-12 tl_border-none tl_outline-none">
+                                    Envoyer
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+            
+        </main>
+    </div>
+    <script>
+        window.onload = ()=>{
+            let toWrite = ["Mon objectif est de transformer des concepts en designs percutants, en utilisant ma passion et mon expertise en design graphique.",`Explorez mon travail et découvrez comment j'allie créativité et compétences techniques pour donner vie à des idées uniques et mémorables.`]
+            let toWriteName = ["Lérancia Manahem Mahulon Dossou-yovo"]
+            Qst('[namewrited="true"]').tlWriting(toWriteName,80,3000,true,{time:1500,count:"infinite"})
+            Qst('[bannercontentwritable="true"]').tlWriting(toWrite,50,3000,false,{time:1500,count:1})
+        }
+        Qs('.sendAvi','click',(e)=>{
+            var dataM = new thisFormData(Qs("former"))
+            JSSend (
+                "POST",
+                "{{ url_for('process_form') }}",
+                dataM,
+                (success,response)=>{
+                    
+                    if (success) {
+                        console.log(response)
+                    }
+                }
+            )
+        })
+        Qs('.bx-menu-alt-right',"click",(e)=>{
+            var menuWrap = e.nextElementSibling
+            if (menuWrap.containsClass('tl_display-none')){
+                menuWrap.removeClass("tl_display-none")
+            }
+            else {
+                menuWrap.addClass("tl_display-none")
+            }
+        })
+    
+        function decomper (decomps) {
+            decomps.forEach(decomp => {
+                let decomplClass = 'decomposeFromBottom'
+                let textDecomp = decomp.textContent
+                let arrayText = textDecomp.split(" ")
+                decomp.textContent = ""
+                arrayText.forEach((word,index) => {
+                    const spana = createdElement("span",{addclass: decomplClass})
+                    spana.style.setProperty("--tds",index)
+                    spana.textThis(word+" ")
+                    decomp.appendChild(spana)
+                })
+            })
+        }
+        decomper(Qs('.toDecomp'))
+
+        let parallaxSections = Qst("*section")
+        //Qs('container').scrollTop = Qs('container').clientHeight*6.1
+        Qs('container').scrollTop = 1
+        Qs('container').addEventListener("scroll", () => {
+            let currentSection = null;
+            parallaxSections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.5 && rect.bottom >= 0) {
+                    currentSection = section;
+                }
+            });
+            
+            if (currentSection) {
+                parallaxSections.forEach(section => {
+                    if (section === currentSection || section == Qs("banner")) {
+                        if (!section.containsClass("active")) {
+                            section.addClass("active");
+                        }
+                    } else {
+                        section.removeClass("active");
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

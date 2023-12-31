@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TL example</title>
+    <link rel="stylesheet" href="@assets/tlBootstrap/tlBootstrap/CSS/tlBootstrap.min.css">
+    <script src="@assets/tlBootstrap/tlBootstrap/JS/tl-js.min.js"></script>
+</head>
+<body class="w-100 display-flex flex-column align-items-center justify-content-center h-100vh p-10-30">
+    <div class="alert-success">
+        <i class="bx bx-check-circle color-white"></i>
+        Votre script a super bien été initié, maintenant vous pouvez profitez de notre framework
+    </div>
+
+    <script>
+        var ele = createdElement("div",addclass="")
+        ele.addClass("alert-warning mt-30")
+        ele.textThis("this is from js using tl-js.min.js")
+        bodyAppend(ele);
+    </script>
+</body>
+</html>
