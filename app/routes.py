@@ -1,5 +1,5 @@
 from flask import render_template, request, jsonify
-from app import app, db, appconfig
+from app import app, db, appconfig, os,randint, Message, mail
 from app.models import *
 import html
 
